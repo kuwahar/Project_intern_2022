@@ -12,8 +12,8 @@ public class PL_move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        j_speed = 5;
-        mv_speed = 1;
+        j_speed = (float)5;
+        mv_speed = (float)3;
         rb = GetComponent<Rigidbody>();
         isGround = true;
     }
