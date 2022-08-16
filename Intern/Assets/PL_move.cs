@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PL_move : MonoBehaviour
 {
     Rigidbody rb;
-    private float j_speed;
-    private float mv_speed;
-    private bool isGround;
+    private float j_speed;  //飛ぶ速度
+    private float mv_speed; //移動速度
+    private bool isGround;  //設置判定
+    private bool isFixed;   //キャラが固定されてるかどうか
 
 
     // Start is called before the first frame update
@@ -17,13 +19,21 @@ public class PL_move : MonoBehaviour
         mv_speed = 3;
         rb = GetComponent<Rigidbody>();
         isGround = true;
+        isFixed = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            isFixed = true;
+        }
+
         rb.velocity = new Vector3(0, rb.velocity.y, 0);
-        if ((Input.GetButton("Vertical")) ^ (Input.GetButton("Horizontal"))) {
+
+        if ((Input.GetButton("Vertical")) ^ (Input.GetButton("Horizontal")))
+        {
             if (Input.GetButton("Vertical"))
             {
                 Move(Input.GetAxis("Vertical"), "z");
@@ -32,7 +42,7 @@ public class PL_move : MonoBehaviour
             {
                 Move(Input.GetAxis("Horizontal"), "x");
             }
-            
+
         }
         if (Input.GetButton("Horizontal") && Input.GetButton("Vertical"))
         {
@@ -44,10 +54,12 @@ public class PL_move : MonoBehaviour
         {
             Jump();
         }
+        isFixed = false;
+
 
     }
 
-    void Move(float vec, string axis, float vec2 = 0) 
+    void Move(float vec, string axis, float vec2 = 0)
     {
         // transformを取得
         Transform myTransform = this.transform;
@@ -57,18 +69,27 @@ public class PL_move : MonoBehaviour
 
         if (axis.Equals("z"))
         {
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, vec * mv_speed);
-            worldAngle.y = vec*180.0f; // ローカル座標を基準に、z軸を軸にした回転を10度に変更
+            if (!isFixed)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, vec * mv_speed);
+            }
+            worldAngle.y = vec * 180.0f; // ローカル座標を基準に、z軸を軸にした回転を10度に変更
         }
         if (axis.Equals("x"))
         {
-            rb.velocity = new Vector3(vec * mv_speed, rb.velocity.y, rb.velocity.z);
-            worldAngle.y = vec*90.0f; // ローカル座標を基準に、x軸を軸にした回転を10度に変更
+            if (!isFixed)
+            {
+                rb.velocity = new Vector3(vec * mv_speed, rb.velocity.y, rb.velocity.z);
+            }
+            worldAngle.y = vec * 90.0f; // ローカル座標を基準に、x軸を軸にした回転を10度に変更
         }
         if (axis.Equals("xz"))
         {
-            rb.velocity = new Vector3(vec * mv_speed, rb.velocity.y, vec2 * mv_speed);
-            worldAngle.y = (vec*vec2) * 45.0f; // ローカル座標を基準に、x軸を軸にした回転を10度に変更
+            if (!isFixed)
+            {
+                rb.velocity = new Vector3(vec * mv_speed, rb.velocity.y, vec2 * mv_speed);
+            }
+            worldAngle.y = (vec * vec2) * 45.0f; // ローカル座標を基準に、x軸を軸にした回転を10度に変更
 
         }
         myTransform.localEulerAngles = worldAngle; // 回転角度を設定
@@ -87,5 +108,11 @@ public class PL_move : MonoBehaviour
         {
             isGround = true;
         }
+
+        if (other.gameObject.tag == "Star")
+        {
+            SceneManager.LoadScene("result");
+        }
+
     }
 }
