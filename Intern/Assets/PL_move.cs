@@ -61,10 +61,8 @@ public class PL_move : MonoBehaviour
 
     void Move(float vec, string axis, float vec2 = 0)
     {
-        // transformを取得
         Transform myTransform = this.transform;
 
-        // ローカル座標を基準に、回転を取得
         Vector3 worldAngle = myTransform.localEulerAngles;
 
         if (axis.Equals("z"))
@@ -73,7 +71,7 @@ public class PL_move : MonoBehaviour
             {
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, vec * mv_speed);
             }
-            worldAngle.y = vec * 180.0f; // ローカル座標を基準に、z軸を軸にした回転を10度に変更
+            worldAngle.y = vec * 180.0f; 
         }
         if (axis.Equals("x"))
         {
@@ -81,7 +79,7 @@ public class PL_move : MonoBehaviour
             {
                 rb.velocity = new Vector3(vec * mv_speed, rb.velocity.y, rb.velocity.z);
             }
-            worldAngle.y = vec * 90.0f; // ローカル座標を基準に、x軸を軸にした回転を10度に変更
+            worldAngle.y = vec * 90.0f; 
         }
         if (axis.Equals("xz"))
         {
@@ -89,7 +87,7 @@ public class PL_move : MonoBehaviour
             {
                 rb.velocity = new Vector3(vec * mv_speed, rb.velocity.y, vec2 * mv_speed);
             }
-            worldAngle.y = (vec * vec2) * 45.0f; // ローカル座標を基準に、x軸を軸にした回転を10度に変更
+            worldAngle.y = (vec * vec2) * 45.0f; 
 
         }
         myTransform.localEulerAngles = worldAngle; // 回転角度を設定
