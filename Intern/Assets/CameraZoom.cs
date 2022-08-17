@@ -10,6 +10,9 @@ public class CameraZoom : MonoBehaviour
     [SerializeField]
     float MinRange = 40;
 
+    [SerializeField]
+    float Range;
+
     private Camera cam;
 
     // Start is called before the first frame update
@@ -22,14 +25,13 @@ public class CameraZoom : MonoBehaviour
     void Update()
     {
 
-
         if ( MinRange < cam.fieldOfView && Input.GetKey(KeyCode.UpArrow))
         {
-            cam.fieldOfView -= 1f;
+            cam.fieldOfView -= Range;
         }
         if ( MaxRange > cam.fieldOfView && Input.GetKey(KeyCode.DownArrow))
         {
-            cam.fieldOfView += 1f;
+            cam.fieldOfView += Range;
         }
 
     }

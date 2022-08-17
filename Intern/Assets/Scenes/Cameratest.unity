@@ -439,6 +439,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02616bb3b5e70749b54eff62109b295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  count: 45
+  rotation: 45
+  delay: 1
 --- !u!1 &1147833562136556185
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +549,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02616bb3b5e70749b54eff62109b295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  count: 0
+  rotation: 0
+  delay: 0
 --- !u!81 &1147833562452604527
 AudioListener:
   m_ObjectHideFlags: 0
@@ -568,6 +574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxRange: 60
   MinRange: 40
+  Range: 0.25
 --- !u!65 &1147833562508908488
 BoxCollider:
   m_ObjectHideFlags: 0

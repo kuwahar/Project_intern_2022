@@ -470,6 +470,7 @@ GameObject:
   - component: {fileID: 4895556190197101487}
   - component: {fileID: 4895556190197101484}
   - component: {fileID: 4895556190197101485}
+  - component: {fileID: 5013041091291186659}
   m_Layer: 0
   m_Name: Stage Camera
   m_TagString: Untagged
@@ -555,6 +556,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02616bb3b5e70749b54eff62109b295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  count: 0
+  rotation: 0
+  delay: 0
+--- !u!114 &5013041091291186659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895556190197101475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db2f6c3a3c1bf0f47945b7d3f42360b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxRange: 60
+  MinRange: 40
+  Range: 0.25
 --- !u!1 &4895556190623426274
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,3 +813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02616bb3b5e70749b54eff62109b295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  count: 45
+  rotation: 45
+  delay: 1
