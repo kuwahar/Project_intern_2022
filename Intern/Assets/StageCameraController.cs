@@ -6,7 +6,7 @@ using UnityEngine;
 public class StageCameraController : MonoBehaviour
 {
     [SerializeField]
-    float count;
+    float partition;
 
     [SerializeField]
     float rotation;
@@ -14,31 +14,38 @@ public class StageCameraController : MonoBehaviour
     [SerializeField]
     int delay;
 
+    int flag = 1 ;
+
     // Update is called once per frame
     async void Update()
     {
         Transform transform = this.transform;
-        float x = rotation / count;
+        float x = rotation / partition;
 
         Vector3 Angle = transform.localEulerAngles;
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (flag == 1)      //実行中に待機を行う
         {
-            //for文を使用してcount回繰り返す
-            for ( int i = 0; i < count; i++)
+            flag = 0;
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                Angle.y += x;
-                transform.localEulerAngles = Angle;
-                await Task.Delay(delay);
+                //for文を使用してcount回繰り返す
+                for (int i = 0; i < partition; i++)
+                {
+                    Angle.y += x;
+                    transform.localEulerAngles = Angle;
+                    await Task.Delay(delay);
+                }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            for (int i = 0; i < count; i++)
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                Angle.y -= x;
-                transform.localEulerAngles = Angle;
-                await Task.Delay(delay);
+                for (int i = 0; i < partition; i++)
+                {
+                    Angle.y -= x;
+                    transform.localEulerAngles = Angle;
+                    await Task.Delay(delay);
+                }
             }
+            flag = 1;
         }
 
     }

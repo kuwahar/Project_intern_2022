@@ -321,7 +321,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147833562068052185}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -439,9 +439,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02616bb3b5e70749b54eff62109b295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 45
+  partition: 45
   rotation: 45
-  delay: 1
+  delay: 10
 --- !u!1 &1147833562136556185
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02616bb3b5e70749b54eff62109b295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 0
+  partition: 0
   rotation: 0
   delay: 0
 --- !u!81 &1147833562452604527
@@ -574,7 +574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxRange: 60
   MinRange: 40
-  Range: 0.25
+  Range: 0.1
 --- !u!65 &1147833562508908488
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -595,7 +595,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147833562508908490}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -832,7 +832,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147833563184100638}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -955,7 +955,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147833563215679459}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
