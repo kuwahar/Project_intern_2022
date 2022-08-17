@@ -29,8 +29,9 @@ public class PL_move2 : MonoBehaviour
     private bool isPickable = true;
     [SerializeField]
     private float timer = 0;
-    private float rayDistance;
-    private Pickup_follow pickup_Follow;
+    private GameObject Pickup_Block = null;
+
+    //private Pickup_follow Pickup_Block;
 
 
     //なんのブロックを持っているのか
@@ -96,9 +97,14 @@ public class PL_move2 : MonoBehaviour
     {
         var direction = this.transform.forward;
 
-        var PickableBlock =CarryBlockList.Where(x => Dist(x.transform.position, this.transform.position)).FirstOrDefault();
-          //posB = CarryBlock.transform.position; //blockの座標
-          //posP = this.transform.position; //プレイヤーの座標
+
+        if (!isHold) Pickup_Block =CarryBlockList.Where(x => Dist(x.transform.position, this.transform.position)).FirstOrDefault();
+        //posB = CarryBlock.transform.position; //blockの座標
+        //posP = this.transform.position; //プレイヤーの座標
+        
+        if (Pickup_Block != null)
+        {
+            var obj_rb = Pickup_Block.GetComponent<Rigidbody>();
 
             if (!isHold)
             {
@@ -106,35 +112,35 @@ public class PL_move2 : MonoBehaviour
                 //if (Input.GetKeyDown(KeyCode.E) && isPickable)
                 {
                     isHold = true;
-                    //rb.useGravity = false;
+                    obj_rb.useGravity = false;
                     isPickable = false;
                 }
             }
-        
-        if (isHold)
-        {
-            //ブロック持ち上げ
-            PickableBlock.transform.position = new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z);
 
-            if (Input.GetKeyDown(KeyCode.E) && isPickable)
-            //if (Input.GetKeyDown(KeyCode.F))
+            if (isHold)
+            {
+                //ブロック持ち上げ
+                Pickup_Block.transform.position = new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z);
+
+                if (Input.GetKeyDown(KeyCode.E) && isPickable)
+                //if (Input.GetKeyDown(KeyCode.F))
                 {
-                //プレイヤーの向いている方向を取得
-                var Pl_direction = transform.forward;
+                    //プレイヤーの向いている方向を取得
+                    var Pl_direction = transform.forward;
 
 
-                //ブロック設置処理　Instantiateは使わないほうがいい
-                PickableBlock.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z) + Pl_direction;
-                isHold = false;
-                //rb.useGravity = true;
-                isPickable = false;
+                    //ブロック設置処理　Instantiateは使わないほうがいい
+                    Pickup_Block.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z) + Pl_direction;
+                    isHold = false;
+                    obj_rb.useGravity = true;
+                    isPickable = false;
 
+                }
             }
-        }
-        
-        if (!isPickable)
-        {
-            //isPickableがfalseなら、直前のフレームからの経過時間を足す
+
+            if (!isPickable)
+            {
+                //isPickableがfalseなら、直前のフレームからの経過時間を足す
                 timer += Time.deltaTime;
 
                 //timerが1秒を越えたら、isAttackableをtrueに戻して
@@ -144,6 +150,7 @@ public class PL_move2 : MonoBehaviour
                     isPickable = true;
                     timer = 0.0f;
                 }
+            }
         }
         
     }
