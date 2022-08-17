@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,22 @@ public class PL_move2 : MonoBehaviour
     float inputHorizontal;
     float inputVertical;
 
+    public List<GameObject> CarryBlockList = new List<GameObject>();
+    private float dis;
+    private Vector3 posB;
+    private Vector3 posP;
+    [SerializeField]
+    private bool isHold = false;
+    [SerializeField]
+    private bool isPickable = true;
+    [SerializeField]
+    private float timer = 0;
+    private float rayDistance;
+    private Pickup_follow pickup_Follow;
+
+
+    //なんのブロックを持っているのか
+    //
 
     // Start is called before the first frame update
     void Start()
@@ -30,17 +47,21 @@ public class PL_move2 : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        var direction = transform.forward;
         inputHorizontal = Input.GetAxisRaw("Horizontal");
-        inputVertical = Input.GetAxisRaw("Vertical");
+        inputVertical = Input.GetAxisRaw("Vertical"); 
+        rb.useGravity = true;
 
         if (Input.GetKeyDown("space") && isGround)
         {
             Jump();
         }
+        Pick();
     }
 
     void FixedUpdate()
     {
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             isFixed = true;
@@ -71,6 +92,62 @@ public class PL_move2 : MonoBehaviour
         isGround = false;
     }
 
+    void Pick()
+    {
+        var direction = this.transform.forward;
+
+        var PickableBlock =CarryBlockList.Where(x => Dist(x.transform.position, this.transform.position)).FirstOrDefault();
+          //posB = CarryBlock.transform.position; //blockの座標
+          //posP = this.transform.position; //プレイヤーの座標
+
+            if (!isHold)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                //if (Input.GetKeyDown(KeyCode.E) && isPickable)
+                {
+                    isHold = true;
+                    //rb.useGravity = false;
+                    isPickable = false;
+                }
+            }
+        
+        if (isHold)
+        {
+            //ブロック持ち上げ
+            PickableBlock.transform.position = new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z);
+
+            if (Input.GetKeyDown(KeyCode.E) && isPickable)
+            //if (Input.GetKeyDown(KeyCode.F))
+                {
+                //プレイヤーの向いている方向を取得
+                var Pl_direction = transform.forward;
+
+
+                //ブロック設置処理　Instantiateは使わないほうがいい
+                PickableBlock.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z) + Pl_direction;
+                isHold = false;
+                //rb.useGravity = true;
+                isPickable = false;
+
+            }
+        }
+        
+        if (!isPickable)
+        {
+            //isPickableがfalseなら、直前のフレームからの経過時間を足す
+                timer += Time.deltaTime;
+
+                //timerが1秒を越えたら、isAttackableをtrueに戻して
+                //次に備えて、timerを0で初期化
+                if (timer >= 1)
+                {
+                    isPickable = true;
+                    timer = 0.0f;
+                }
+        }
+        
+    }
+
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Ground")
@@ -83,5 +160,18 @@ public class PL_move2 : MonoBehaviour
             SceneManager.LoadScene("result");
         }
 
+    }
+
+    bool Dist(Vector3 pos1, Vector3 pos2)
+    {
+        dis = Vector3.Distance(pos1, pos2);
+        if (dis < 1.2f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
