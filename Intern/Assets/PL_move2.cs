@@ -61,8 +61,6 @@ public class PL_move2 : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(moveForward);
         }
 
-
-
         isFixed = false;
     }
 

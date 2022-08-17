@@ -5,11 +5,13 @@ using UnityEngine;
 public class Pickup_follow : MonoBehaviour
 {
     Rigidbody rb;
-    public GameObject Player;
+    public GameObject PlayerPrefab;
     private float dis;
     private Vector3 posB;
     private Vector3 posP;
     private bool isHold = false;
+    [SerializeField]
+    private int pick_wait = 100;
     private float rayDistance;
 
     // Start is called before the first frame update
@@ -22,13 +24,14 @@ public class Pickup_follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var direction = Player.transform.forward;
-        Vector3 rayPosition = Player.transform.position + new Vector3(0.0f, -2.0f, 0.0f);
+        var direction = PlayerPrefab.transform.forward;
+        Vector3 rayPosition = PlayerPrefab.transform.position + new Vector3(0.0f, -2.0f, 0.0f);
         Ray ray = new Ray(rayPosition, direction);
         Debug.DrawRay(rayPosition, direction * rayDistance, Color.red);
+        pick_wait--;
 
         posB = this.transform.position;
-        posP = Player.transform.position;
+        posP = PlayerPrefab.transform.position;
 
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, rayDistance))
@@ -43,20 +46,28 @@ public class Pickup_follow : MonoBehaviour
         if (Dist(posB, posP))
         //if (Dist(posB, posP) && isHold)
         {
-            if (Input.GetKeyUp("e"))
+            if (Input.GetKeyUp("e") && pick_wait < 0)
+            {
                 isHold = true;
+                rb.useGravity = false;
+            }
         }
         if (isHold)
         {
-
-            this.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 1.1f, Player.transform.position.z);
+            
+            this.transform.position = new Vector3(PlayerPrefab.transform.position.x, PlayerPrefab.transform.position.y + 1.1f, PlayerPrefab.transform.position.z);
 
             if (Input.GetKeyDown("e"))
             {
+                //プレイヤーの向いている方向を取得
+                var Pl_direction = PlayerPrefab.transform.forward;
+
                 //ブロック設置処理
-                Instantiate(this, Player.transform.position, Player.transform.rotation);
+                Pickup_follow obj = Instantiate(this, PlayerPrefab.transform.position + Pl_direction, PlayerPrefab.transform.rotation);
+
                 Destroy(this.gameObject);
                 isHold = false;
+                rb.useGravity = true;
 
             }
         }
