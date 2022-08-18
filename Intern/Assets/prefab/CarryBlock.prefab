@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 597385566884457519}
   - component: {fileID: 4957825135312456110}
   - component: {fileID: 4208034351329318149}
+  - component: {fileID: 48361005}
   m_Layer: 0
   m_Name: CarryBlock
   m_TagString: Untagged
@@ -97,3 +98,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &48361005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8654937286624402375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a94e649e3b8204e8bf81d828b41e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 6825313828805768446, guid: c9a3267c9bf091a4fabff280f6efcda1, type: 3}
