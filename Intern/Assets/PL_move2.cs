@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PL_move2 : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class PL_move2 : MonoBehaviour
     [SerializeField]
     private float mv_speed = 3; //移動速度
 
-    private bool isGround;  //設置判定
+    public bool isGround;  //設置判定
     private bool isFixed;   //キャラが固定されてるかどうか
     float inputHorizontal;
     float inputVertical;
@@ -30,6 +29,8 @@ public class PL_move2 : MonoBehaviour
     [SerializeField]
     private float timer = 0;
     private GameObject Pickup_Block = null;
+
+    public GameObject Star = null;
 
     //private Pickup_follow Pickup_Block;
 
@@ -157,14 +158,17 @@ public class PL_move2 : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        
         if (other.gameObject.tag == "Ground")
         {
             isGround = true;
         }
+        
 
         if (other.gameObject.tag == "Star")
         {
-            SceneManager.LoadScene("result");
+            var star = GameObject.Find("Star").GetComponent<Get>();
+            star.isStarGot = true;
         }
 
     }
