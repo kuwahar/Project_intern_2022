@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6825313828805768446}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.0100002, z: 10}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -129,3 +129,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   j_speed: 5
   mv_speed: 3
+  isGround: 0
+  CarryBlockList:
+  - {fileID: 0}
+  - {fileID: 0}
+  isHold: 0
+  isPickable: 0
+  timer: 0
+  Star: {fileID: 0}
