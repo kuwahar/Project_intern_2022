@@ -7,6 +7,10 @@ public class PL_move2 : MonoBehaviour
 {
     Rigidbody rb;
 
+    private Animator animator;
+    private CharacterController characterController;
+
+
     [SerializeField]
     private float j_speed = 5;  //飛ぶ速度
 
@@ -44,6 +48,8 @@ public class PL_move2 : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         isGround = true;
         isFixed = false;
+        characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -58,6 +64,7 @@ public class PL_move2 : MonoBehaviour
         {
             Jump();
         }
+        else animator.SetFloat("jumpstate", 0);
         Pick();
     }
 
@@ -66,6 +73,7 @@ public class PL_move2 : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
+
             isFixed = true;
         }
         // カメラの方向から、X-Z平面の単位ベクトルを取得
@@ -81,14 +89,19 @@ public class PL_move2 : MonoBehaviour
         // キャラクターの向きを進行方向に
         if (moveForward != Vector3.zero)
         {
+            Debug.Log(transform.rotation);
             transform.rotation = Quaternion.LookRotation(moveForward);
+            animator.SetFloat("walkstate", 1);
+
         }
+        else animator.SetFloat("walkstate", 0);
 
         isFixed = false;
     }
 
     void Jump()
     {
+        animator.SetFloat("jumpstate", 1);
         //rb.AddForce(new Vector3(0, j_speed, 0));
         rb.velocity = new Vector3(rb.velocity.y, j_speed, rb.velocity.z);
         isGround = false;
