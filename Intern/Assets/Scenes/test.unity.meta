@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Intern/Assets/Scenes/test.unity.meta
 guid: af06e8580c8a83e47b4e93fb043b7962
+========
+guid: bbd647c34d428b54589752527daaf3f5
+folderAsset: yes
+>>>>>>>> feature_kuwahara/add_star:Intern/Assets/AurynSky.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
