@@ -2,19 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+<<<<<<< HEAD
+=======
 using System.Threading.Tasks;
+>>>>>>> feature_kuwahara/add_star
 
 
 
 public class Get : MonoBehaviour
 {
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> develop
     AnimationScript test;
+>>>>>>> feature_kuwahara/add_star
     public bool isStarGot = false;
     void Start()
     {
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> develop
         test = GetComponent<AnimationScript>();
+>>>>>>> feature_kuwahara/add_star
 
 
     }
@@ -24,8 +39,23 @@ public class Get : MonoBehaviour
     {
         if (isStarGot)
         {
+<<<<<<< HEAD
             var test = GetComponent<AnimationScript>();
 
+=======
+<<<<<<< HEAD
+            var test = GetComponent<AnimationScript>();
+            test.floatSpeed = 10;
+
+            Invoke("SceneChange", 0.5f);
+        }
+    }
+    void SceneChange()
+    {
+        SceneManager.LoadScene("result");
+    }
+=======
+>>>>>>> develop
             GetStar();
             
             //Invoke("SceneChange", 1.00f);
@@ -53,4 +83,10 @@ public class Get : MonoBehaviour
         time *= 1000;
         return (int)time;
 
+<<<<<<< HEAD
     }}
+=======
+    }
+>>>>>>> feature_kuwahara/add_star
+}
+>>>>>>> develop

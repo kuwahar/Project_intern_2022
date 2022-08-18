@@ -13,6 +13,10 @@ GameObject:
   - component: {fileID: 1033650656019720794}
   - component: {fileID: 1125046414673781184}
   - component: {fileID: 1011609693339342113}
+<<<<<<< HEAD
+  - component: {fileID: 114000014153751224}
+=======
+>>>>>>> feature_kuwahara/add_star
   m_Layer: 0
   m_Name: Star
   m_TagString: Star
@@ -123,9 +127,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.3472724, y: 0.44943976, z: 2.2323892}
   m_Center: {x: -0.00000023841858, y: -0.00041776896, z: 0.117841244}
+<<<<<<< HEAD
+--- !u!114 &114000014153751224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011753185078362826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c3a3c5f01dab34abb82aa304246168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStarGot: 0
 --- !u!1001 &1011609693972202377
 PrefabInstance:
   m_ObjectHideFlags: 0
+=======
+--- !u!1001 &1011609693972202377
+PrefabInstance:
+  m_ObjectHideFlags: 0
+>>>>>>> feature_kuwahara/add_star
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 1010988115735828988}
