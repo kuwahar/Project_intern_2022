@@ -5,7 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class PL_move2 : MonoBehaviour
 {
+    
     Rigidbody rb;
+    private CharacterController characterController;
+
+    [SerializeField]
+    private float walkSpeed;
+    private Animator animator;
 
     [SerializeField]
     private float j_speed = 5;  //飛ぶ速度
@@ -25,6 +31,9 @@ public class PL_move2 : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         isGround = true;
         isFixed = false;
+
+        characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -37,6 +46,7 @@ public class PL_move2 : MonoBehaviour
         {
             Jump();
         }
+
     }
 
     void FixedUpdate()
@@ -58,10 +68,18 @@ public class PL_move2 : MonoBehaviour
         // キャラクターの向きを進行方向に
         if (moveForward != Vector3.zero)
         {
+            animator.SetFloat("walkstate", 1);
             transform.rotation = Quaternion.LookRotation(moveForward);
         }
+        else
+        {
+            animator.SetFloat("walkstate", 0);
+        }
 
-
+        if(isGround != true)
+        {
+            animator.SetFloat("jumpstate", 1);
+        }
 
         isFixed = false;
     }
@@ -78,6 +96,7 @@ public class PL_move2 : MonoBehaviour
         if (other.gameObject.tag == "Ground")
         {
             isGround = true;
+            animator.SetFloat("jumpstate", 0);
         }
 
         if (other.gameObject.tag == "Star")
