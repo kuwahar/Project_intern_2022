@@ -5,14 +5,17 @@ using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
 
 
+
 public class Get : MonoBehaviour
 {
+
     AnimationScript test;
     public bool isStarGot = false;
-    // Start is called before the first frame update
     void Start()
     {
+
         test = GetComponent<AnimationScript>();
+
 
     }
 
@@ -21,6 +24,8 @@ public class Get : MonoBehaviour
     {
         if (isStarGot)
         {
+            var test = GetComponent<AnimationScript>();
+
             GetStar();
             
             //Invoke("SceneChange", 1.00f);
@@ -34,7 +39,8 @@ public class Get : MonoBehaviour
         GetComponent<BoxCollider>().isTrigger = true;
         test.isFloating = false;
         test.isScaling = true;
-
+        await Task.Delay(ctime(1));
+        SceneChange();
     }
 
     void SceneChange()
@@ -47,5 +53,4 @@ public class Get : MonoBehaviour
         time *= 1000;
         return (int)time;
 
-    }
-}
+    }}
