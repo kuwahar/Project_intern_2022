@@ -16610,14 +16610,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAnimated: 1
   isRotating: 1
-  isFloating: 1
-  isScaling: 1
+  isFloating: 0
+  isScaling: 0
   rotationAngle: {x: 0, y: 0, z: 10}
   rotationSpeed: 10
   floatSpeed: 0
-  floatRate: 0.5
+  floatRate: 1
   startScale: {x: 1, y: 1, z: 1}
-  endScale: {x: 1.5, y: 1.5, z: 1.5}
+  endScale: {x: 5, y: 5, z: 5}
   scaleSpeed: 1
   scaleRate: 0.5
 --- !u!1 &2380226360121627889
