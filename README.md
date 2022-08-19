@@ -31,9 +31,9 @@ https://assetstore.unity.com/packages/3d/environments/landscapes/lowpoly-environ
 
 ## 製作者
 
-高知工業高等専門学校　情報セキュリティコース　4年​
-青木 大智​
-久保 拓海​
-桑原 竜樹​
+高知工業高等専門学校　情報セキュリティコース　4年​<br>
+青木 大智​<br>
+久保 拓海​<br>
+桑原 竜樹​<br>
 
 ​
