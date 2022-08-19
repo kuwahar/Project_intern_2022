@@ -3,18 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class mainscript : MonoBehaviour
+public class Mainscript : MonoBehaviour
 {
     public void OnClickStartButton()
     {
-        SceneManager.LoadScene("title");
+        SceneManager.LoadScene("Main");
     }
-
-    /*void Update()
-    {
-        if (0)
-        {
-            SceneManager.LoadScene("result");
-        }
-    }*/
 }
