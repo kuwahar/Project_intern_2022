@@ -7,6 +7,6 @@ public class Mainscript : MonoBehaviour
 {
     public void OnClickStartButton()
     {
-        SceneManager.LoadScene("title");
+        SceneManager.LoadScene("Main");
     }
 }

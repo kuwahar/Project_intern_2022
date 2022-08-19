@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PL_move2 : MonoBehaviour
 {
@@ -58,13 +59,16 @@ public class PL_move2 : MonoBehaviour
         {
             Jump();
         }
+
+        if (Input.GetKeyDown("r"))
+            SceneManager.LoadScene("Main");
         Pick();
     }
 
     void FixedUpdate()
     {
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             isFixed = true;
         }
